@@ -1,0 +1,85 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/editTextTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Title"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
+        android:layout_margin="16dp"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/editTextAuthor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
+        android:hint="Author"
+        android:layout_below="@id/editTextTitle"
+        android:layout_margin="16dp"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/editTextYear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:hint="Publication Year"
+        android:layout_below="@id/editTextAuthor"
+        android:layout_margin="16dp"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/editTextGenres"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:hint="Genres (Comma separated)"
+        android:layout_below="@id/editTextYear"
+        android:layout_margin="16dp"
+        android:inputType="text" />
+
+    <Spinner
+        android:id="@+id/spinnerRating"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:prompt="@string/select_rating"
+        android:entries="@array/rating_array"
+        android:layout_below="@id/editTextGenres"
+        android:layout_margin="16dp" />
+
+    <GridLayout
+        android:layout_marginTop="700dp"
+        android:layout_marginLeft="100dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <Button
+        android:id="@+id/addButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Book"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/spinnerRating"
+        android:layout_marginTop="24dp"
+        android:onClick="addBook" />
+
+    <Button
+        android:id="@+id/cancelAddButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cancel"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/spinnerRating"
+        android:layout_marginTop="24dp"
+        android:onClick="addBook" />
+    </GridLayout>
+</RelativeLayout>
