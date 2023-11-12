@@ -41,21 +41,21 @@
         android:layout_height="wrap_content"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
-        android:hint="Genres (Comma separated)"
+        android:hint="Genres"
         android:layout_below="@id/editTextYear"
         android:layout_margin="16dp"
         android:inputType="text" />
 
-    <Spinner
+    <EditText
         android:id="@+id/spinnerRating"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/white"
+        android:hint="Rating"
         android:textColorHint="@color/white"
-        android:prompt="@string/select_rating"
-        android:entries="@array/rating_array"
         android:layout_below="@id/editTextGenres"
-        android:layout_margin="16dp" />
+        android:layout_margin="16dp"
+        android:inputType="number"/>
 
     <GridLayout
         android:layout_marginTop="700dp"

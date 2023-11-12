@@ -42,7 +42,7 @@ class MainActivity : ComponentActivity() {
             updateBookCode -> {
                 if (resultCode == RESULT_OK) {
                     data?.let {
-                        val updatedBook = it.getParcelableExtra<Book>("book")
+                        val updatedBook = it.getParcelableExtra<Book>("updateBook")
                         updatedBook?.let { updated ->
                             val position = bookAdapter.getBooks().indexOfFirst { it.id == updated.id }
                             if (position != -1) {
@@ -83,7 +83,7 @@ class MainActivity : ComponentActivity() {
         bookAdapter.setOnItemClickListener { selectedBook ->
             // launch UpdateBookActivity
             val intent = Intent(this, UpdateBookActivity::class.java)
-            intent.putExtra("book", selectedBook)
+            intent.putExtra("updateBook", selectedBook)
             startActivityForResult(intent, updateBookCode)
         }
     }
@@ -92,21 +92,4 @@ class MainActivity : ComponentActivity() {
         super.onResume()
     }
 
-}
-
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    BookTrackerTheme {
-        Greeting("Android")
-    }
 }

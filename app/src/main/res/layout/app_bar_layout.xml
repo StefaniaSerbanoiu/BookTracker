@@ -7,7 +7,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#7A5980"> <!-- Background color for the top section -->
+        android:background="#7A5980"> <!-- background for the top section -->
 
         <TextView
             android:layout_width="match_parent"
@@ -16,7 +16,7 @@
             android:textColor="#000000"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:padding="8dp" /> <!-- Text attributes -->
+        android:padding="8dp" /> <!-- text attributes -->
     </RelativeLayout>
 
 </RelativeLayout>

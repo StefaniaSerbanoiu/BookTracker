@@ -8,14 +8,14 @@
     android:background="@color/my_purple2"
     tools:context=".MainActivity">
 
-    <!-- Include the App Bar -->
+    <!--  App Bar -->
     <include layout="@layout/app_bar_layout" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="50dp" /> <!-- Set top margin to create space -->
+        android:layout_marginTop="50dp" /> <!-- top margin to create space -->
 
     <!-- Button for adding a book -->
     <Button

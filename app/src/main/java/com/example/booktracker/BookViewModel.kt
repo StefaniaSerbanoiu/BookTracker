@@ -12,10 +12,10 @@ class BookViewModel : ViewModel() {
 
     init {
         books.addAll(listOf(
-            Book(1, "Book 1", 2000, "Author 1", "Genre1,  Genre2", 4.5f),
-            Book(2, "Book 2", 2005, "Author 2", "Genre3", 4.0f),
-            Book(3, "Book 3", 2022, "Author 1", "Genre 1, Genre 2", 4.5f),
-            Book(4, "Book 4", 2021, "Author 2", "Genre 2", 4.0f)
+            Book(1, "Kingkiller chronicles", 2007, "Patrick Rothfuss", "fantasy, adventure", 10f),
+            Book(2, "The blade itself", 2006, "Joe Abercrombie", "grimdark fantasy", 4.0f),
+            Book(3, "Circe", 2018, "Madeline Miller", "mythology, retelling", 4.5f),
+            Book(4, "Salem's Lot", 1975, "Stephen King", "horror", 4.0f)
         ))
         booksLiveData.value = books
     }
