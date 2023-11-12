@@ -1,5 +1,6 @@
 package com.example.booktracker
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -8,10 +9,15 @@ import android.widget.Spinner
 import androidx.activity.ComponentActivity
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import com.example.booktracker.model.Book
+import kotlin.random.Random
 
 class AddBookActivity : ComponentActivity() {
-    private val bookViewModel: BookViewModel by viewModels()
+    private val bookViewModel: BookViewModel by viewModels {
+        ViewModelProvider.AndroidViewModelFactory.getInstance(application)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.add_book_screen)
@@ -33,14 +39,18 @@ class AddBookActivity : ComponentActivity() {
         }
     }
 
-    private fun addBook(title: String, author: String, year: Int, genres: List<String>, rating: Float) {
+    private fun addBook(title: String, author: String, year: Int, genres: List<String>, rating: Float): Book {
         val book = Book(title, year, author, genres, rating)
 
-
-        // Add book to the repository or ViewModel here
-        // Example: bookRepository.addBook(book)
+        // Set the result with the book data
+        val resultIntent = Intent()
         bookViewModel.addBook(book)
-
+        resultIntent.putExtra("book", book)
+        setResult(RESULT_OK, resultIntent)
+        System.out.println(bookViewModel.getSize())
         finish() // Finish the activity after adding the book
+        return book // return the newly created book
+
     }
 }
+

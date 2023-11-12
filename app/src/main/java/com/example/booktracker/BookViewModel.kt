@@ -11,43 +11,38 @@ class BookViewModel : ViewModel() {
     private val booksLiveData = MutableLiveData<List<Book>>()
 
     init {
-        // Initialize with some sample data
         books.addAll(listOf(
-            Book("Book 1", 2000, "Author 1", listOf("Genre1", "Genre2"), 4.5f),
-            Book("Book 2", 2005, "Author 2", listOf("Genre3"), 4.0f)
-            // Add more sample books if needed
+            Book(1, "Book 1", 2000, "Author 1", listOf("Genre1", "Genre2"), 4.5f),
+            Book(2, "Book 2", 2005, "Author 2", listOf("Genre3"), 4.0f),
+            Book(3, "Book 3", 2022, "Author 1", listOf("Genre 1", "Genre 2"), 4.5f),
+            Book(4, "Book 4", 2021, "Author 2", listOf("Genre 2", "Genre 3"), 4.0f)
         ))
         booksLiveData.value = books
     }
 
-    fun getAllBooks(): LiveData<List<Book>> {
-        return booksLiveData
-    }
+    fun getAllBooks(): LiveData<List<Book>> { return booksLiveData }
 
-    fun addBook(book: Book) {
+    fun getSize() : Int = books.size
+
+    fun addBook(book: Book)
+    {
         books.add(book)
-        booksLiveData.value = books
+        booksLiveData.value = books.toList()
     }
 
-    fun updateBook(updatedBook: Book) {
+    fun updateBook(updatedBook: Book)
+    {
         val index = books.indexOfFirst { it.title == updatedBook.title }
-        if (index != -1) {
+        if (index != -1)
+        {
             books[index] = updatedBook
             booksLiveData.value = books
         }
     }
 
-    fun deleteBook(title: String) {
+    fun deleteBook(title: String)
+    {
         books.removeIf { it.title == title }
         booksLiveData.value = books
-    }
-
-    private fun generateSampleBooks(): List<Book> {
-        // You can replace this with your own data retrieval logic
-        val books = mutableListOf<Book>()
-        books.add(Book("Book 1", 2022, "Author 1", listOf("Genre 1", "Genre 2"), 4.5f))
-        books.add(Book("Book 2", 2021, "Author 2", listOf("Genre 2", "Genre 3"), 4.0f))
-        // Add more books as needed
-        return books
     }
 }
