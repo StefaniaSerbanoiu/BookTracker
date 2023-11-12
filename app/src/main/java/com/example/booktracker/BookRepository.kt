@@ -1,12 +1,11 @@
 package com.example.booktracker
 
 import com.example.booktracker.model.Book
-import kotlin.random.Random
 
 class BookRepository {
         private val books = mutableListOf<Book>()
 
-        fun addBook(title: String, author: String, publicationYear: Int, genres: List<String>, rating : Float)
+        fun addBook(title: String, author: String, publicationYear: Int, genres: String, rating : Float)
         {
             //val id = Random.nextInt(10, 10000)
             val book = Book(title,  publicationYear, author,  genres, rating)
@@ -19,7 +18,7 @@ class BookRepository {
 
         fun getBookById(identifier: Int): Book? { return books.find { it.id == identifier } }
 
-        fun updateBook(id: Int, newTitle: String, newAuthor: String, newYear: Int, genres: List<String>, rating: Float): Boolean
+        fun updateBook(id: Int, newTitle: String, newAuthor: String, newYear: Int, genres: String, rating: Float): Boolean
         {
             //val bookToUpdate = books.find { it.title == title }
             val bookToUpdate = this.getBookById(id)

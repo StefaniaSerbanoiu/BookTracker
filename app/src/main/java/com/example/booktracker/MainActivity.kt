@@ -20,6 +20,7 @@ import com.google.android.material.appbar.MaterialToolbar
 class MainActivity : ComponentActivity() {
     private lateinit var bookAdapter: BookAdapter
     private val addBookCode = 1
+    private val updateBookCode = 2
 
     private val bookViewModel: BookViewModel by viewModels {
         ViewModelProvider.AndroidViewModelFactory.getInstance(application)
@@ -27,20 +28,43 @@ class MainActivity : ComponentActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-
-        if (requestCode == addBookCode && resultCode == RESULT_OK) {
-            data?.let {
-                val book = it.getParcelableExtra<Book>("book")
-                book?.let { bookViewModel.addBook(it) }
+        Log.d("UpdateBookActivity", "onActivityResult: requestCode=$requestCode, resultCode=$resultCode")
+        when (requestCode) {
+            addBookCode -> {
+                if (resultCode == RESULT_OK) {
+                    data?.let {
+                        val book = it.getParcelableExtra<Book>("book")
+                        book?.let { bookViewModel.addBook(it) }
+                    }
+                }
             }
+
+            updateBookCode -> {
+                if (resultCode == RESULT_OK) {
+                    data?.let {
+                        val updatedBook = it.getParcelableExtra<Book>("book")
+                        updatedBook?.let { updated ->
+                            val position = bookAdapter.getBooks().indexOfFirst { it.id == updated.id }
+                            if (position != -1) {
+                                bookAdapter.update(updatedBook, position)
+                                bookAdapter.notifyItemChanged(position)
+                            }
+                        }
+                    }
+                }
+            }
+
+
         }
     }
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        bookAdapter = BookAdapter()
+        bookAdapter = BookAdapter(bookViewModel, this)
         val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = bookAdapter
@@ -55,17 +79,20 @@ class MainActivity : ComponentActivity() {
             val intent = Intent(this, AddBookActivity::class.java)
             startActivityForResult(intent, addBookCode)
         }
-    }
-}
-        /*
-        val topAppBar: MaterialToolbar = findViewById(R.id.appBarLayout)
-        // For example, to set a click listener on the MaterialToolbar:
 
-        topAppBar.setOnMenuItemClickListener { menuItem ->
-            // Handle toolbar item clicks here
-            true
+        bookAdapter.setOnItemClickListener { selectedBook ->
+            // launch UpdateBookActivity
+            val intent = Intent(this, UpdateBookActivity::class.java)
+            intent.putExtra("book", selectedBook)
+            startActivityForResult(intent, updateBookCode)
         }
-         */
+    }
+
+    override fun onResume() {
+        super.onResume()
+    }
+
+}
 
 
 @Composable

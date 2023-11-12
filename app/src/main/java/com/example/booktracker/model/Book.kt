@@ -9,7 +9,7 @@ data class Book(
     var title: String = "",
     var year: Int = 0,
     var author: String = "",
-    var genres: List<String> = (listOf("")),
+    var genres: String = "",
     var rating: Float = 1.0f
 ) : Parcelable
 {
@@ -18,7 +18,7 @@ data class Book(
         title: String,
         year: Int,
         author: String,
-        genres: List<String>,
+        genres: String,
         rating: Float
     ) : this(index, title, year, author, genres, rating)
     {

@@ -62,24 +62,24 @@
         android:layout_marginLeft="100dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <Button
-        android:id="@+id/addButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add Book"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/spinnerRating"
-        android:layout_marginTop="24dp"
-        android:onClick="addBook" />
+        <Button
+            android:id="@+id/updateButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Update"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/spinnerRating"
+            android:layout_marginTop="24dp"
+            android:onClick="updateBook" />
 
-    <Button
-        android:id="@+id/cancelAddButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Cancel"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/spinnerRating"
-        android:layout_marginTop="24dp"
-        android:onClick="cancelAddBook" />
+        <Button
+            android:id="@+id/cancelUpdateButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancel"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/spinnerRating"
+            android:layout_marginTop="24dp"
+            android:onClick="cancelUpdateBook"/>
     </GridLayout>
 </RelativeLayout>

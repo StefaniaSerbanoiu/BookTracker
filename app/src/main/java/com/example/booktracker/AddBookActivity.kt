@@ -26,31 +26,35 @@ class AddBookActivity : ComponentActivity() {
         val editTextYear = findViewById<EditText>(R.id.editTextYear)
         val editTextGenres = findViewById<EditText>(R.id.editTextGenres)
         val spinnerRating = findViewById<Spinner>(R.id.spinnerRating)
+
         val addButton = findViewById<Button>(R.id.addButton)
+        val cancelAddButton = findViewById<Button>(R.id.cancelAddButton)
+
+        cancelAddButton.setOnClickListener {
+            finish()
+        }
 
         addButton.setOnClickListener {
             addBook(
                 editTextTitle.text.toString(),
                 editTextAuthor.text.toString(),
                 editTextYear.text.toString().toIntOrNull() ?: 0,
-                editTextGenres.text.split(",").map { it.trim() },
+                editTextGenres.text.toString(),
                 spinnerRating.selectedItem.toString().toFloatOrNull() ?: 0.0f
             )
         }
     }
 
-    private fun addBook(title: String, author: String, year: Int, genres: List<String>, rating: Float): Book {
+    private fun addBook(title: String, author: String, year: Int, genres: String, rating: Float): Book {
         val book = Book(title, year, author, genres, rating)
 
-        // Set the result with the book data
-        val resultIntent = Intent()
-        bookViewModel.addBook(book)
+
+        val resultIntent = Intent() // resultIntent will contain book s info
         resultIntent.putExtra("book", book)
         setResult(RESULT_OK, resultIntent)
-        System.out.println(bookViewModel.getSize())
-        finish() // Finish the activity after adding the book
+        println(bookViewModel.getSize())
+        finish() // finish the activity after adding the book
         return book // return the newly created book
-
     }
 }
 

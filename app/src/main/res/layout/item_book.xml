@@ -80,7 +80,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Delete"
+                android:onClick="onDeleteButtonClick"
                 android:layout_toStartOf="@id/updateButton" />
+
         </RelativeLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

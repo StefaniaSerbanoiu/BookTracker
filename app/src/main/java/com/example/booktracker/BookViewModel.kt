@@ -12,10 +12,10 @@ class BookViewModel : ViewModel() {
 
     init {
         books.addAll(listOf(
-            Book(1, "Book 1", 2000, "Author 1", listOf("Genre1", "Genre2"), 4.5f),
-            Book(2, "Book 2", 2005, "Author 2", listOf("Genre3"), 4.0f),
-            Book(3, "Book 3", 2022, "Author 1", listOf("Genre 1", "Genre 2"), 4.5f),
-            Book(4, "Book 4", 2021, "Author 2", listOf("Genre 2", "Genre 3"), 4.0f)
+            Book(1, "Book 1", 2000, "Author 1", "Genre1,  Genre2", 4.5f),
+            Book(2, "Book 2", 2005, "Author 2", "Genre3", 4.0f),
+            Book(3, "Book 3", 2022, "Author 1", "Genre 1, Genre 2", 4.5f),
+            Book(4, "Book 4", 2021, "Author 2", "Genre 2", 4.0f)
         ))
         booksLiveData.value = books
     }
@@ -40,9 +40,9 @@ class BookViewModel : ViewModel() {
         }
     }
 
-    fun deleteBook(title: String)
+    fun deleteBook(id: Int)
     {
-        books.removeIf { it.title == title }
+        books.removeIf { it.id == id }
         booksLiveData.value = books
     }
 }
